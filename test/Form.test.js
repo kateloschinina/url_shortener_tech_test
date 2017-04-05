@@ -12,4 +12,24 @@ describe('Form', () => {
       <button>Shorten</button>
     ])).to.equal(true);
   });
+
+  it('should accept input', () => {
+    const wrapper = mount(<Form />);
+    const input = wrapper.find('input');
+    input.simulate('change', {target: { value: 'testURL' }});
+    expect(wrapper.state('fullURL')).to.equal('testURL');
+    expect(input.prop('value')).to.equal('testURL');
+  });
+
+  it('should call onSubmit when Shorten is clicked', () => {
+    const addItemSpy = spy();
+    const wrapper = shallow(<Form onSubmit={addItemSpy}/>);
+    wrapper.setState({fullURL: 'fullURL'});
+    const addButton = wrapper.find('button');
+
+    addButton.simulate('click');
+
+    expect(addItemSpy.calledOnce).to.equal(true);
+    expect(addItemSpy.calledWith('fullURL')).to.equal(true);
+  });
 });
