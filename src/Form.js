@@ -5,7 +5,7 @@ export class Form extends Component {
     return (
       <div>
         <input/>
-        <button>Add</button>
+        <button>Shorten</button>
       </div>
     );
   }

@@ -6,10 +6,10 @@ import { Form } from '../src/Form';
 
 describe('Form', () => {
   it('should render a form', () => {
-    const wrapper = shallow(<Form/>);
+    const wrapper = shallow(<Form />);
     expect(wrapper.containsAllMatchingElements([
       <input/>,
-      <button>Add</button>
+      <button>Shorten</button>
     ])).to.equal(true);
   });
 });
