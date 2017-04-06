@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import database from './database/Database';
 
 export class Form extends Component {
   constructor(props) {
@@ -14,7 +15,13 @@ export class Form extends Component {
     this.setState({fullURL: event.target.value, shortURL: ''});
   }
   handleClick() {
-    this.props.onSubmit(this.state.fullURL);
+    const itemsRef = database.ref('/items');
+    itemsRef.push({
+      fullURL: this.state.fullURL,
+      shortURL: ''
+    }).catch((error) => {
+      console.log(error);
+    });
   }
   render() {
     return (
@@ -25,6 +32,3 @@ export class Form extends Component {
     );
   }
 }
-Form.PropTypes = {
-  onSubmit: React.PropTypes.func.isRequired
-};

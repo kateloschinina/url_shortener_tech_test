@@ -20,16 +20,16 @@ describe('Form', () => {
     expect(wrapper.state('fullURL')).to.equal('testURL');
     expect(input.prop('value')).to.equal('testURL');
   });
-
-  it('should call onSubmit when Shorten is clicked', () => {
-    const addItemSpy = spy();
-    const wrapper = shallow(<Form onSubmit={addItemSpy}/>);
-    wrapper.setState({fullURL: 'fullURL'});
-    const addButton = wrapper.find('button');
-
-    addButton.simulate('click');
-
-    expect(addItemSpy.calledOnce).to.equal(true);
-    expect(addItemSpy.calledWith('fullURL')).to.equal(true);
-  });
+  // 
+  // it('should call onSubmit when Shorten is clicked', () => {
+  //   const addItemSpy = spy();
+  //   const wrapper = shallow(<Form onSubmit={addItemSpy}/>);
+  //   wrapper.setState({fullURL: 'fullURL'});
+  //   const addButton = wrapper.find('button');
+  //
+  //   addButton.simulate('click');
+  //
+  //   expect(addItemSpy.calledOnce).to.equal(true);
+  //   expect(addItemSpy.calledWith('fullURL')).to.equal(true);
+  // });
 });
