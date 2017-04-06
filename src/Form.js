@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import database from './helpers/database/Database';
 import { shortener } from './helpers/Shortener';
 
+import { Stats } from './Stats';
+import { Unique } from './Unique';
+
 export class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
       fullURL: '',
-      dbLength: this.getNextDatabaseNumber()
+      dbLength: this.getNextDatabaseNumber(),
+      unique: true
     };
     this.setText = this.setText.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -27,7 +31,7 @@ export class Form extends Component {
       });
       console.log("Was pushed");
     } else {
-      console.log("Your input is not unique");
+      this.setState({unique: false});
     }
   }
   getNextDatabaseNumber() {
@@ -55,6 +59,7 @@ export class Form extends Component {
         <input className="btn btn-default btn-xl sr-button" value={this.state.fullURL} onChange={this.setText}/>
         <br></br>
         <button onClick={this.handleClick} className="btn btn-default btn-xl sr-button">Shorten</button>
+        <Unique state={this.state.unique} />
       </div>
     );
   }
