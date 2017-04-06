@@ -25,9 +25,9 @@ class App extends Component {
       }
     });
   }
-  handleStatsPage(data) {
-    console.log(data.location.pathname.substr(1).slice(0,-6));
-  }
+  // handleStatsPage(data) {
+  //   console.log(data.location.pathname.substr(1).slice(0,-6));
+  // }
   render() {
     return (
       <div className="App">
