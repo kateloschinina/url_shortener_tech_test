@@ -21,7 +21,7 @@ export class Form extends Component {
     if (res === true) {
       itemsRef.push({
         fullURL: this.state.fullURL,
-        shortURL: 'https://spike.ly/' + shortener(this.state.dbLength)
+        shortURL: shortener(this.state.dbLength)
       }).catch((error) => {
         console.log(error);
       });
