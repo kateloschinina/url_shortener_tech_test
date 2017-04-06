@@ -29,4 +29,12 @@ describe('Form', () => {
     addButton.simulate('click');
     expect(spyOn.calledOnce).to.equal(true);
   });
+
+  it('should call getNextDatabaseNumber when Shorten is clicked', () => {
+    const spyOn = spy(Form.prototype, 'getNextDatabaseNumber');
+    const wrapper = mount(<Form />);
+    const addButton = wrapper.find('button');
+    addButton.simulate('click');
+    expect(spyOn.called).to.equal(true);
+  });
 });

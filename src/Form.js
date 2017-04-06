@@ -7,7 +7,7 @@ export class Form extends Component {
     super(props);
     this.state = {
       fullURL: '',
-      dbLength: 0
+      dbLength: this.getNextDatabaseNumber()
     };
     this.setText = this.setText.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -17,14 +17,16 @@ export class Form extends Component {
   }
   handleClick() {
     const itemsRef = database.ref('/items');
-    database.ref('/items').on('value', snap => {
-      this.state.dbLength = Object.keys(snap.val()).length;
-    });
     itemsRef.push({
       fullURL: this.state.fullURL,
       shortURL: 'https://spike.ly/' + shortener(this.state.dbLength)
     }).catch((error) => {
       console.log(error);
+    });
+  }
+  getNextDatabaseNumber() {
+    database.ref('/items').on('value', snap => {
+      this.setState({dbLength: Object.keys(snap.val()).length});
     });
   }
   render() {
