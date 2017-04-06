@@ -31,24 +31,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Router>
-          <div>
-            <Route path="/" component={Form}/>
-            <Route path="/:short/stats" render={props => (
-              <Redirect to={this.handleStatsPage(props)}/>
-            )}/>
-            <Route path="/:short" render={props => (
-              <Stats url={props} />
-            )}/>
-          </div>
-        </Router>
+        <header>
+            <div className="header-content">
+                <div className="header-content-inner">
+                    <h1 id="homeHeading">This is the best ever   URL shortner</h1>
+                    <hr></hr>
+                    <p>If you want to shorten a URL - enter it in the form below.</p>
+                    <Router>
+                      <div>
+                        <Route path="/" component={Form}/>
+                        <Route path="/:short/stats" render={props => (
+                          <Stats url={props} />
+                        )}/>
+                        <Route path="/:short" render={props => (
+                          <Redirect to={this.handleShortUrl(props)}/>
+                        )}/>
+                      </div>
+                    </Router>
+                </div>
+            </div>
+        </header>
       </div>
     );
   }

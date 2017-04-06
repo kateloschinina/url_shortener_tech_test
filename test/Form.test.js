@@ -9,7 +9,8 @@ describe('Form', () => {
   it('should render a form', () => {
     const wrapper = shallow(<Form />);
     expect(wrapper.containsAllMatchingElements([
-      <input/>,
+      <input className="btn btn-default btn-xl sr-button" />,
+      <br></br>,
       <button>Shorten</button>
     ])).to.equal(true);
   });
