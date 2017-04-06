@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import database from './database/Database';
+import database from './helpers/database/Database';
 
 export class Form extends Component {
   constructor(props) {

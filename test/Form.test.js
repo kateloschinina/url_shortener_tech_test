@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
 import { Form } from '../src/Form';
-import database from '../src/database/Database';
+import database from '../src/helpers/database/Database';
 
 describe('Form', () => {
   it('should render a form', () => {
