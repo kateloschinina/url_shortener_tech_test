@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom'
 
 import { Form } from './Form';
+import { Stats } from './Stats';
 
 class App extends Component {
   handleShortUrl(data) {
@@ -42,6 +43,9 @@ class App extends Component {
             <Route path="/" component={Form}/>
             <Route path="/:short/stats" render={props => (
               <Redirect to={this.handleStatsPage(props)}/>
+            )}/>
+            <Route path="/:short" render={props => (
+              <Stats url={props} />
             )}/>
           </div>
         </Router>
