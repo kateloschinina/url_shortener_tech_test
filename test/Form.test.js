@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
 import { Form } from '../src/Form';
+import database from '../src/database/Database';
 
 describe('Form', () => {
   it('should render a form', () => {
@@ -20,16 +21,12 @@ describe('Form', () => {
     expect(wrapper.state('fullURL')).to.equal('testURL');
     expect(input.prop('value')).to.equal('testURL');
   });
-  // 
-  // it('should call onSubmit when Shorten is clicked', () => {
-  //   const addItemSpy = spy();
-  //   const wrapper = shallow(<Form onSubmit={addItemSpy}/>);
-  //   wrapper.setState({fullURL: 'fullURL'});
-  //   const addButton = wrapper.find('button');
-  //
-  //   addButton.simulate('click');
-  //
-  //   expect(addItemSpy.calledOnce).to.equal(true);
-  //   expect(addItemSpy.calledWith('fullURL')).to.equal(true);
-  // });
+
+  it('should call handleClick when Shorten is clicked', () => {
+    const spyOn = spy(Form.prototype, 'handleClick');
+    const wrapper = mount(<Form />);
+    const addButton = wrapper.find('button');
+    addButton.simulate('click');
+    expect(spyOn.calledOnce).to.equal(true);
+  });
 });
