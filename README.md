@@ -51,7 +51,7 @@ Application should redirect users to the long URL when the short URL is visited
 
 Application should check wether the URL is valid or not
 
-Application should check if the URL has already been stored no to create duplicate entries
+Application should check if the URL has already been stored not to create duplicate entries
 
 Application should track the number of times a shortened URL has been visited, track the time and date that a shortened URL has been visited, and show these data at statistics page `https://spike.ly/P5HrXO/stats`
 ```
