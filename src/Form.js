@@ -17,17 +17,37 @@ export class Form extends Component {
   }
   handleClick() {
     const itemsRef = database.ref('/items');
-    itemsRef.push({
-      fullURL: this.state.fullURL,
-      shortURL: 'https://spike.ly/' + shortener(this.state.dbLength)
-    }).catch((error) => {
-      console.log(error);
-    });
+    var res = this.checkURLUniqueness();
+    if (res === true) {
+      itemsRef.push({
+        fullURL: this.state.fullURL,
+        shortURL: 'https://spike.ly/' + shortener(this.state.dbLength)
+      }).catch((error) => {
+        console.log(error);
+      });
+      console.log("Was pushed");
+    } else {
+      console.log("Your input is not unique");
+    }
   }
   getNextDatabaseNumber() {
     database.ref('/items').on('value', snap => {
       this.setState({dbLength: Object.keys(snap.val()).length});
     });
+  }
+  checkURLUniqueness() {
+    var res = true;
+    database.ref('/items').on('value', snap => {
+      for (var i = 0; i < Object.keys(snap.val()).length; i++) {
+        if (this.state.fullURL === Object.values(snap.val())[i].fullURL) {
+          res = false;
+        }
+      }
+    });
+    return res;
+  }
+  componentDidMount() {
+    this.checkURLUniqueness();
   }
   render() {
     return (
