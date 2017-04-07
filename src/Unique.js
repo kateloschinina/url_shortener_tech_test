@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import database from './helpers/database/Database';
-import { shortener } from './helpers/Shortener';
 import { Stats } from './Stats';
 
 export class Unique extends Component {

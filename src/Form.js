@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import database from './helpers/database/Database';
 import { shortener } from './helpers/Shortener';
 
-import { Stats } from './Stats';
 import { Unique } from './Unique';
 
 export class Form extends Component {
@@ -58,8 +57,8 @@ export class Form extends Component {
     return res;
   }
   checkURLValidness() {
-    const expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
-    const regex = new RegExp(expression)
+    const expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+    const regex = new RegExp(expression);
     const url = this.state.fullURL;
     return url.match(regex);
   }
