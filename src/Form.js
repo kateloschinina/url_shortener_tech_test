@@ -11,7 +11,8 @@ export class Form extends Component {
       fullURL: '',
       dbLength: this.getNextDatabaseNumber(),
       unique: true,
-      valid: true
+      valid: true,
+      pushed: false
     };
     this.setText = this.setText.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -31,6 +32,7 @@ export class Form extends Component {
           console.log(error);
         });
         console.log("Was pushed");
+        this.setState({pushed: true});
         this.setState({valid: true});
       } else {
         this.setState({unique: false});
@@ -80,6 +82,7 @@ export class Form extends Component {
         <Unique state={this.state.unique}
                 valid={this.state.valid}
                 fullURL={this.state.fullURL}
+                pushed={this.state.pushed}
                 />
       </div>
     );

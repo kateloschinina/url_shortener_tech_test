@@ -43,7 +43,7 @@ export class Stats extends Component {
           Origin: {this.state.fullURL}
         </p>
         <p className="stats">
-          Shortened version: {'https://spike.ly/'+this.state.shortURL}
+          Shortened version: {'http://k-loschinina-url-shortener.herokuapp.com/'+this.state.shortURL}
         </p>
         <p className="stats">
           visited: {this.state.visited} times
