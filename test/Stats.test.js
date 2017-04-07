@@ -25,11 +25,11 @@ describe('Stats', () => {
     expect(spyOn.called).to.equal(false);
   });
 
-  // it('expect handleLongUrl to be called', () => {
-  //   const wrapper = mount(<Stats fullURL={true}/>);
-  //   const spyOn = spy(Stats.prototype, 'handleLongUrl');
-  //   expect(spyOn.called).to.equal(false);
-  // });
+  it('expect handleLongUrl to be called', () => {
+    const wrapper = mount(<Stats fullURL={true}/>);
+    const spyOn = spy(Stats.prototype, 'handleLongUrl');
+    expect(spyOn.called).to.equal(false);
+  });
 
   it('expect database ref to be called', () => {
     const wrapper = mount(<Stats />);
