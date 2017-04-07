@@ -10,10 +10,11 @@ describe('Stats', () => {
     const wrapper = shallow(<Stats />);
     expect(wrapper.containsAllMatchingElements([
       <h2>Statistics about your URL:</h2>,
-      <p className="stats">Origin: {}</p>,
-      <p className="stats">Shortened version: {}</p>,
-      <p className="stats">visited: times</p>,
-      <p className="stats">on: dates</p>
     ])).to.equal(true);
+  });
+
+  it('should render a message', () => {
+    const wrapper = shallow(<Stats />);
+    expect(wrapper.find('p')).to.have.length(3);
   });
 });

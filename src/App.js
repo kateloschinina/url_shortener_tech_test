@@ -41,7 +41,7 @@ class App extends Component {
                       <div>
                         <Route path="/" component={Form}/>
                         <Route path="/:short/stats" render={props => (
-                          <Stats url={props} />
+                          <Stats url={props.location.pathname.substr(1).slice(0,-6)} />
                         )}/>
                         <Route path="/:short" render={props => (
                           <Redirect to={this.handleShortUrl(props)}/>

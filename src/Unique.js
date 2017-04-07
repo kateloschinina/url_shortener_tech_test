@@ -6,7 +6,7 @@ export class Unique extends Component {
     return this.props.valid ? (this.props.state ? null :
       (<div>
         <p>The shotened version of this URL already exists:</p>
-        <Stats />
+        <Stats fullURL={this.props.fullURL}/>
       </div>)) :
       (<p>This URL does not seem real, try another one.</p>);
   }

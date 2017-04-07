@@ -69,10 +69,18 @@ export class Form extends Component {
   render() {
     return (
       <div>
-        <input className="btn btn-default btn-xl sr-button" value={this.state.fullURL} onChange={this.setText}/>
+        <input  className="btn btn-default btn-xl sr-button"
+                value={this.state.fullURL}
+                onChange={this.setText}
+                />
         <br></br>
-        <button onClick={this.handleClick} className="btn btn-default btn-xl sr-button">Shorten</button>
-        <Unique state={this.state.unique} valid={this.state.valid} />
+        <button onClick={this.handleClick}
+                className="btn btn-default btn-xl sr-button"
+                >Shorten</button>
+        <Unique state={this.state.unique}
+                valid={this.state.valid}
+                fullURL={this.state.fullURL}
+                />
       </div>
     );
   }
