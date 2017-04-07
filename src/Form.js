@@ -11,7 +11,8 @@ export class Form extends Component {
     this.state = {
       fullURL: '',
       dbLength: this.getNextDatabaseNumber(),
-      unique: true
+      unique: true,
+      valid: true
     };
     this.setText = this.setText.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -21,17 +22,23 @@ export class Form extends Component {
   }
   handleClick() {
     const itemsRef = database.ref('/items');
-    var res = this.checkURLUniqueness();
-    if (res === true) {
-      itemsRef.push({
-        fullURL: this.state.fullURL,
-        shortURL: shortener(this.state.dbLength)
-      }).catch((error) => {
-        console.log(error);
-      });
-      console.log("Was pushed");
+    if (this.checkURLValidness()) {
+      var res = this.checkURLUniqueness();
+      if (res === true) {
+        itemsRef.push({
+          fullURL: this.state.fullURL,
+          shortURL: shortener(this.state.dbLength)
+        }).catch((error) => {
+          console.log(error);
+        });
+        console.log("Was pushed");
+        this.setState({valid: true});
+      } else {
+        this.setState({unique: false});
+        this.setState({valid: true});
+      }
     } else {
-      this.setState({unique: false});
+      this.setState({valid: false});
     }
   }
   getNextDatabaseNumber() {
@@ -50,7 +57,14 @@ export class Form extends Component {
     });
     return res;
   }
+  checkURLValidness() {
+    const expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
+    const regex = new RegExp(expression)
+    const url = this.state.fullURL;
+    return url.match(regex);
+  }
   componentDidMount() {
+    this.checkURLValidness();
     this.checkURLUniqueness();
   }
   render() {
@@ -59,7 +73,7 @@ export class Form extends Component {
         <input className="btn btn-default btn-xl sr-button" value={this.state.fullURL} onChange={this.setText}/>
         <br></br>
         <button onClick={this.handleClick} className="btn btn-default btn-xl sr-button">Shorten</button>
-        <Unique state={this.state.unique} />
+        <Unique state={this.state.unique} valid={this.state.valid} />
       </div>
     );
   }
