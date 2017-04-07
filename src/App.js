@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import database from './helpers/database/Database';
@@ -7,7 +6,6 @@ import database from './helpers/database/Database';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect
 } from 'react-router-dom'
 
@@ -25,9 +23,6 @@ class App extends Component {
       }
     });
   }
-  // handleStatsPage(data) {
-  //   console.log(data.location.pathname.substr(1).slice(0,-6));
-  // }
   render() {
     return (
       <div className="App">

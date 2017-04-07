@@ -9,7 +9,6 @@ import Form from '../src/Form';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect
 } from 'react-router-dom'
 
@@ -39,17 +38,31 @@ describe('App', () => {
     ])).to.equal(true);
   });
 
-  it('expect handleShortUrl to be called only when path is right', () => {
+  it('expect handleShortUrl to be called', () => {
     const wrapper = mount(<App/>);
     const spyOn = spy(App.prototype, 'handleShortUrl');
+    <Route path="/:short" render={props => (
+      expect(spyOn.called).to.equal(true)
+    )}/>
+  });
+
+  it('app should call Route', () => {
+    const wrapper = mount(<App/>);
+    const spyOn = spy(Route);
     expect(spyOn.called).to.equal(false);
   });
 
-  it('expect handleShortUrl to be called', () => {
-// ??? Figure out how to test
+  it('app should call Redirect', () => {
+    const wrapper = mount(<App/>);
+    const spyOn = spy(Redirect);
+    expect(spyOn.called).to.equal(false);
   });
 
-  it('expect to be redirected to Stats page', () => {
-// ??? Figure out how to test
+  it('app should call Redirect', () => {
+    const wrapper = mount(<App/>);
+    const spyOn = spy(Redirect);
+    <Route path="/:short" render={props => (
+      expect(spyOn.called).to.equal(true)
+    )}/>
   });
 });

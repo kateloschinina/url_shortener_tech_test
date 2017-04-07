@@ -2,7 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
+
 import { Form } from '../src/Form';
+import { Unique } from '../src/Unique';
 import database from '../src/helpers/database/Database';
 
 describe('Form', () => {
@@ -12,6 +14,13 @@ describe('Form', () => {
       <input className="btn btn-default btn-xl sr-button" />,
       <br></br>,
       <button>Shorten</button>
+    ])).to.equal(true);
+  });
+
+  it('should render Unique', () => {
+    const wrapper = shallow(<Form />);
+    expect(wrapper.containsAllMatchingElements([
+      <Unique />
     ])).to.equal(true);
   });
 
@@ -45,5 +54,11 @@ describe('Form', () => {
     const addButton = wrapper.find('button');
     addButton.simulate('click');
     expect(spyOn.called).to.equal(true);
+  });
+
+  it('expect database ref to be called', () => {
+    const wrapper = mount(<Form />);
+    const spyOn = spy(database.ref('/items'), 'on');
+    expect(spyOn.called).to.equal(false);
   });
 });
