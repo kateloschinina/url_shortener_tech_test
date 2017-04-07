@@ -16,7 +16,7 @@ describe('Stats', () => {
 
   it('should render a message', () => {
     const wrapper = shallow(<Stats />);
-    expect(wrapper.find('p')).to.have.length(3);
+    expect(wrapper.find('p')).to.have.length(2);
   });
 
   it('expect handleShortUrl to be called', () => {

@@ -6,8 +6,7 @@ export class Stats extends Component {
     super(props);
     this.state = {
       fullURL: this.props.fullURL,
-      shortURL: this.props.url,
-      visited: 0
+      shortURL: this.props.url
     }
   }
   componentDidMount() {
@@ -40,13 +39,11 @@ export class Stats extends Component {
       <div className="stats-div">
         <h2>Statistics about your URL:</h2>
         <p className="stats">
-          Origin: {this.state.fullURL}
+          <b>Origin:</b> <a href={this.state.fullURL} className="white">{this.state.fullURL}</a>
         </p>
         <p className="stats">
-          Shortened version: {'http://k-loschinina-url-shortener.herokuapp.com/'+this.state.shortURL}
-        </p>
-        <p className="stats">
-          visited: {this.state.visited} times
+          <b>Shortened version:</b> <a href={'http://k-loschinina-url-shortener.herokuapp.com/'+this.state.shortURL} className="white">
+              {'http://k-loschinina-url-shortener.herokuapp.com/'+this.state.shortURL}</a>
         </p>
       </div>
     );

@@ -21,6 +21,7 @@ class App extends Component {
           window.location.assign(Object.values(snap.val())[i].fullURL);
         }
       }
+
     });
   }
   render() {
