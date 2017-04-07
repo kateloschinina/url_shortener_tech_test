@@ -9,7 +9,7 @@ function shortener(number) {
 }
 
 function lastNumber(number) {
-  var remainder = number % 62;
+  const remainder = number % 62;
   if(remainder < 26) {
     return String.fromCharCode(remainder + 97);
   } else if (remainder < 36) {
