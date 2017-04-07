@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy , stub } from 'sinon';
 import { shallow, mount } from 'enzyme';
 import ReactDOM from 'react-dom';
 import { Stats } from '../src/Stats';
@@ -25,11 +25,11 @@ describe('Stats', () => {
     expect(spyOn.called).to.equal(false);
   });
 
-  it('expect handleLongUrl to be called', () => {
-    const wrapper = mount(<Stats fullURL={true}/>);
-    const spyOn = spy(Stats.prototype, 'handleLongUrl');
-    expect(spyOn.called).to.equal(false);
-  });
+  // it('expect handleLongUrl to be called', () => {
+  //   const wrapper = mount(<Stats fullURL={true}/>);
+  //   const spyOn = spy(Stats.prototype, 'handleLongUrl');
+  //   expect(spyOn.called).to.equal(false);
+  // });
 
   it('expect database ref to be called', () => {
     const wrapper = mount(<Stats />);
@@ -45,7 +45,18 @@ describe('Stats', () => {
 
   it('expect DidMount to be called', () => {
     const wrapper = mount(<Stats />);
+    console.log(wrapper.state('fullURL'));
     const spyOn = spy(Stats.prototype, 'constructor');
     expect(spyOn.called).to.equal(false);
+  });
+
+  it('assigns the right fullURL state', () => {
+    const wrapper = mount(<Stats fullURL={'test'}/>);
+    expect(wrapper.state('fullURL')).to.equal('test');
+  });
+
+  it('assigns the right shortURL state', () => {
+    const wrapper = mount(<Stats url={'test'}/>);
+    expect(wrapper.state('shortURL')).to.equal('test');
   });
 });
